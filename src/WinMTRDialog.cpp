@@ -69,7 +69,8 @@ WinMTRDialog::WinMTRDialog(CWnd* pParent)
 	hasMaxLRUFromCmdLine = false;
 	hasUseDNSFromCmdLine = false;
 	hasUseIPv6FromCmdLine = false;
-	
+
+	ip2loc_init();
 	traceThreadMutex = CreateMutex(NULL, FALSE, NULL);
 	wmtrnet = new WinMTRNet(this);
 	if(!wmtrnet->hasIPv6) m_checkIPv6.EnableWindow(FALSE);
@@ -151,7 +152,17 @@ TCHAR caption[] = {_T("WinMTR (Redux) v1.10")
 			statusBar.AddPaneControl(m_buttonAppnor,1234,true);
 		}
 	}
-	
+
+	if (ip2loc_ischinese())
+	{
+		if (m_listFont.CreatePointFont(90, _T("Microsoft Yahei UI"))) {
+			m_listMTR.SetFont(&m_listFont);
+		} else
+		{
+			OutputDebugString(_T("Chinese font set failed"));
+		}
+	}
+
 	for(int i = 0; i< MTR_NR_COLS; i++)
 		m_listMTR.InsertColumn(i, MTR_COLS[i], LVCFMT_LEFT, MTR_COL_LENGTH[i] , -1);
 		
@@ -841,29 +852,32 @@ int WinMTRDialog::DisplayRedraw()
 			m_listMTR.InsertItem(i, buf);
 		else
 			m_listMTR.SetItem(i, 0, LVIF_TEXT, buf, 0, 0, 0, 0);
-			
-		m_listMTR.SetItem(i, 1, LVIF_TEXT, nr_crt, 0, 0, 0, 0);
+
+		// fill IPIP.net location
+		m_listMTR.SetItem(i, 1, LVIF_TEXT, wmtrnet->GetLocation(i).c_str(), 0, 0, 0, 0);
+
+		m_listMTR.SetItem(i, 2, LVIF_TEXT, nr_crt, 0, 0, 0, 0);
 		
 		_stprintf(buf, _T("%d"), wmtrnet->GetPercent(i));
-		m_listMTR.SetItem(i, 2, LVIF_TEXT, buf, 0, 0, 0, 0);
-		
-		_stprintf(buf, _T("%d"), wmtrnet->GetXmit(i));
 		m_listMTR.SetItem(i, 3, LVIF_TEXT, buf, 0, 0, 0, 0);
 		
-		_stprintf(buf, _T("%d"), wmtrnet->GetReturned(i));
+		_stprintf(buf, _T("%d"), wmtrnet->GetXmit(i));
 		m_listMTR.SetItem(i, 4, LVIF_TEXT, buf, 0, 0, 0, 0);
 		
-		_stprintf(buf, _T("%d"), wmtrnet->GetBest(i));
+		_stprintf(buf, _T("%d"), wmtrnet->GetReturned(i));
 		m_listMTR.SetItem(i, 5, LVIF_TEXT, buf, 0, 0, 0, 0);
 		
-		_stprintf(buf, _T("%d"), wmtrnet->GetAvg(i));
+		_stprintf(buf, _T("%d"), wmtrnet->GetBest(i));
 		m_listMTR.SetItem(i, 6, LVIF_TEXT, buf, 0, 0, 0, 0);
 		
-		_stprintf(buf, _T("%d"), wmtrnet->GetWorst(i));
+		_stprintf(buf, _T("%d"), wmtrnet->GetAvg(i));
 		m_listMTR.SetItem(i, 7, LVIF_TEXT, buf, 0, 0, 0, 0);
 		
-		_stprintf(buf, _T("%d"), wmtrnet->GetLast(i));
+		_stprintf(buf, _T("%d"), wmtrnet->GetWorst(i));
 		m_listMTR.SetItem(i, 8, LVIF_TEXT, buf, 0, 0, 0, 0);
+		
+		_stprintf(buf, _T("%d"), wmtrnet->GetLast(i));
+		m_listMTR.SetItem(i, 9, LVIF_TEXT, buf, 0, 0, 0, 0);
 		
 		
 	}

@@ -63,6 +63,7 @@ public:
 	CButton m_checkIPv6;
 	CListCtrl m_listMTR;
 	CMFCLinkCtrl m_buttonAppnor;
+	CFont m_listFont;
 	
 	CStatic	m_staticS;
 	CStatic	m_staticJ;

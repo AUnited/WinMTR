@@ -83,6 +83,8 @@ public:
 	void	UpdateRTT(int at, int rtt);
 	void	AddReturned(int at);
 	void	AddXmit(int at);
+
+	_tstring GetLocation(int at);
 	
 	WinMTRDialog*		wmtrdlg;
 	union {

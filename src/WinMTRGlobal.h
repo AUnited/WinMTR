@@ -53,6 +53,7 @@
 #include <sstream>
 
 #include "resource.h"
+#include "ipdb.h"
 
 #define WINMTR_VERSION	_T("1.0")
 #define WINMTR_LICENSE	_T("GPLv2 - GNU General Public License, version 2")
@@ -90,10 +91,11 @@
 #define IP_HEADER_LENGTH   20
 
 
-#define MTR_NR_COLS 9
+#define MTR_NR_COLS 10
 
 const TCHAR MTR_COLS[ MTR_NR_COLS ][10] = {
 	_T("Hostname"),
+	_T("Location"),
 	_T("Nr"),
 	_T("Loss %"),
 	_T("Sent"),
@@ -105,7 +107,7 @@ const TCHAR MTR_COLS[ MTR_NR_COLS ][10] = {
 };
 
 const int MTR_COL_LENGTH[ MTR_NR_COLS ] = {
-	249, 30, 50, 40, 40, 50, 50, 50, 50
+	130, 120, 30, 50, 40, 40, 50, 50, 50, 50
 };
 
 int gettimeofday(struct timeval* tv, struct timezone* tz);
@@ -125,5 +127,15 @@ typedef std::basic_istringstream<TCHAR> _tistringstream;
 #	define TRACE_MSG(msg)
 #endif
 
+void ip2loc_init();
+
+/**
+ * \brief Get location of an IP address
+ * \param addr Binary representation of IPv4/IPv6 address
+ * \return location of that IP address
+ */
+_tstring ip2loc_lookup(const std::string& addr);
+
+bool ip2loc_ischinese();
 
 #endif // ifndef GLOBAL_H_

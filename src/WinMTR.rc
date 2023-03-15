@@ -127,7 +127,7 @@ BEGIN
     EDITTEXT        IDC_EDIT_SIZE,196,99,34,13,ES_AUTOHSCROLL | ES_NUMBER
     CONTROL         "Resolve names",IDC_CHECK_DNS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,167,119,63,8
     GROUPBOX        "",IDC_STATIC,7,7,237,82,BS_FLAT
-    CTEXT           "WinMTR v1.1 is licensed under GNU GPLv2",IDC_STATIC,42,14,194,17
+    CTEXT           "WinMTR v1.2 is licensed under GNU GPLv2",IDC_STATIC,42,14,194,17
     PUSHBUTTON      "&License",ID_LICENSE,81,67,94,14,BS_FLAT
     LTEXT           "Max. hosts in LRU list:",IDC_STATIC,15,119,74,10,NOT WS_GROUP
     EDITTEXT        IDC_EDIT_MAX_LRU,90,116,34,13,ES_AUTOHSCROLL
@@ -171,7 +171,7 @@ FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,144,101,50,14
     LTEXT           "www.cstools.cyou",IDC_STATIC,187,9,60,11
-    LTEXT           "WinMTR (Live) v1.1 is licensed under GPLv2",IDC_STATIC,7,9,176,10
+    LTEXT           "WinMTR (Live) v1.2 is licensed under GPLv2",IDC_STATIC,7,9,176,10
     LTEXT           "Usage: WinMTR [options] target_host_name",IDC_STATIC,7,29,144,8
     LTEXT           "Options:",IDC_STATIC,7,39,28,8
     LTEXT           "     --interval, -i VALUE. Set ping interval.",IDC_STATIC,26,47,131,8
@@ -205,12 +205,12 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "FileDescription", "WinMTR is a GUI MTR implementation for Windows"
-            VALUE "FileVersion", "1.1.0.0"
+            VALUE "FileVersion", "1.2.0.0"
             VALUE "InternalName", "WinMTR"
-            VALUE "LegalCopyright", "WinMTR 1.1 (c) 2021"
+            VALUE "LegalCopyright", "WinMTR 1.2 (c) 2023"
             VALUE "OriginalFilename", "WinMTR.exe"
             VALUE "ProductName", "WinMTR"
-            VALUE "ProductVersion", "1.1.0.0"
+            VALUE "ProductVersion", "1.2.0.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -299,7 +299,7 @@ END
 STRINGTABLE
 BEGIN
     IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
-    IDS_STRING_SB_NAME      "WinMTR v1.1 under GNU GPLv2"
+    IDS_STRING_SB_NAME      "WinMTR v1.2 under GNU GPLv2"
     IDS_STRING_SB_PING      "0000000"
     IDS_STRING_CLEAR_HISTORY "Clear History"
 END

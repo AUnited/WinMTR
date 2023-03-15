@@ -1,6 +1,6 @@
 ﻿WinMTR - GUI MTR implementation for Windows
 =============
-Thank you for downloading WinMTR v1.1!
+Thank you for downloading WinMTR v1.2!
 
 ## About
 

@@ -66,7 +66,7 @@ WinMTRDialog::WinMTRDialog(CWnd* pParent)
 	hasUseDNSFromCmdLine = false;
 	hasUseIPv6FromCmdLine = false;
 
-	ip2loc_init();
+	//ip2loc_init();
 	traceThreadMutex = CreateMutex(NULL, FALSE, NULL);
 	wmtrnet = new WinMTRNet(this);
 	if(!wmtrnet->hasIPv6) m_checkIPv6.EnableWindow(FALSE);
@@ -110,11 +110,11 @@ BOOL WinMTRDialog::OnInitDialog()
 	char caption[] = {_T("WinMTR (Live) v1.2 64bit")};
 #endif
 #ifdef _UNICODE
-	_T(" Unicode")
+	_T(" Unicode");
 #else
-	_T(" ANSI")
+	_T(" ANSI");
 #endif
-};
+
 	SetTimer(1, WINMTR_DIALOG_TIMER, NULL);
 	SetWindowText(caption);
 	
@@ -139,15 +139,15 @@ BOOL WinMTRDialog::OnInitDialog()
 		}
 	}
 
-	if (ip2loc_ischinese())
-	{
-		if (m_listFont.CreatePointFont(90, _T("Microsoft Yahei UI"))) {
-			m_listMTR.SetFont(&m_listFont);
-		} else
-		{
-			OutputDebugString(_T("Chinese font set failed"));
-		}
-	}
+	//if (ip2loc_ischinese())
+	//{
+	//	if (m_listFont.CreatePointFont(90, _T("Microsoft Yahei UI"))) {
+	//		m_listMTR.SetFont(&m_listFont);
+	//	} else
+	//	{
+	//		OutputDebugString(_T("Chinese font set failed"));
+	//	}
+	//}
 
 	for(int i = 0; i< MTR_NR_COLS; i++)
 		m_listMTR.InsertColumn(i, MTR_COLS[i], LVCFMT_LEFT, MTR_COL_LENGTH[i] , -1);
@@ -780,7 +780,7 @@ int WinMTRDialog::DisplayRedraw()
 			m_listMTR.SetItem(i, 0, LVIF_TEXT, buf, 0, 0, 0, 0);
 
 		// fill IPIP.net location
-		m_listMTR.SetItem(i, 1, LVIF_TEXT, wmtrnet->GetLocation(i).c_str(), 0, 0, 0, 0);
+	//	m_listMTR.SetItem(i, 1, LVIF_TEXT, wmtrnet->GetLocation(i).c_str(), 0, 0, 0, 0);
 
 		m_listMTR.SetItem(i, 2, LVIF_TEXT, nr_crt, 0, 0, 0, 0);
 		
@@ -1046,7 +1046,6 @@ void WinMTRDialog::Transit(STATES new_state)
 		m_buttonStart.SetWindowText(_T("Stop"));
 		m_comboHost.EnableWindow(FALSE);
 		m_checkIPv6.EnableWindow(FALSE);
-		m_buttonOptions.EnableWindow(FALSE);
 		statusBar.SetPaneText(0, _T("Double click on host name for more information."));
 		_beginthread(PingThread, 0 , this);
 		m_buttonStart.EnableWindow(TRUE);

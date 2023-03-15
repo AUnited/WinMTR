@@ -300,18 +300,18 @@ int WinMTRNet::GetName(int at, TCHAR* n)
 	return 0;
 }
 
-_tstring WinMTRNet::GetLocation(int at)
-{
-	if (host[at].addr.sin_family == AF_INET)
-	{
-		return ip2loc_lookup(std::string((const char *) &host[at].addr.sin_addr, 4));
-	}
-	else if (host[at].addr6.sin6_family == AF_INET6)
-	{
-		return ip2loc_lookup(std::string((const char *) &host[at].addr6.sin6_addr, 16));
-	}
-	return _tstring();
-}
+//_tstring WinMTRNet::GetLocation(int at)
+//{
+//	if (host[at].addr.sin_family == AF_INET)
+//	{
+//		return ip2loc_lookup(std::string((const char *) &host[at].addr.sin_addr, 4));
+//	}
+//	else if (host[at].addr6.sin6_family == AF_INET6)
+//	{
+//		return ip2loc_lookup(std::string((const char *) &host[at].addr6.sin6_addr, 16));
+//	}
+//	return _tstring();
+//}
 
 
 int WinMTRNet::GetBest(int at)

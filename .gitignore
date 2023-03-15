@@ -22,3 +22,10 @@ src-cmd/obj
 *.a
 
 .github
+# VS directories
+.vs
+Debug
+Debug_x64
+Release
+Release_x64
+*.vcxproj.user
